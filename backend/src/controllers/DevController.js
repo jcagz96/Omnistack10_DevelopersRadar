@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
+const parseStringAsArray = require('../utils/parseStringAsArray');
 
 
 // normal controller methods: index, show, store, update, destroy 
@@ -21,7 +22,7 @@ module.exports = {
 
             let { name = login, avatar_url, bio } = apiResponse.data;   //if name doesn't exist , then name will be equals to login name
 
-            const techsArray = techs.split(',').map(tech => tech.trim());  //split string to array by "," separator, then go throught array and trim possible spaces in each string 
+            const techsArray = parseStringAsArray(techs);
 
             const location = {
                 type: 'Point',
@@ -44,7 +45,7 @@ module.exports = {
     }
 
 
-
+    //TODO: methods update() and destroy()
 
 
 }
