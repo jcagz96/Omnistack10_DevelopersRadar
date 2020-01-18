@@ -1,9 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 require('dotenv').config();
 
 const app = express();
+
+
 
 const routes = require('./routes');
 
@@ -27,13 +30,13 @@ mongoose.connect(process.env.DB_CONNECTION, {
 
 
 
-
+app.use(cors());
 app.use(express.json());    // add this line to make POST method work with body params | we need this line before app.use(routes) to make JSON body params work on that file
 app.use(routes);
 
 
 
 
-app.listen(3000, () => {
+app.listen(3001, () => {
     console.log(`Server is running...`)
 })
