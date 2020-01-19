@@ -2,11 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
+const http = require('http');
+
+const { setupWebSocket } = require('./websocket');
+
 require('dotenv').config();
 
 const app = express();
+const server = http.Server(app);
 
-
+setupWebSocket(server);
 
 const routes = require('./routes');
 
@@ -37,6 +42,6 @@ app.use(routes);
 
 
 
-app.listen(3001, () => {
+server.listen(3001, () => {
     console.log(`Server is running...`)
 })
